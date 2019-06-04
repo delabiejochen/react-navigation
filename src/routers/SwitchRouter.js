@@ -38,9 +38,11 @@ export default (routeConfigs, config = {}) => {
   order.forEach(routeName => {
     const routeConfig = routeConfigs[routeName];
     childRouters[routeName] = null;
-    const screen = getScreenForRouteName(routeConfigs, routeName);
-    if (screen.router) {
-      childRouters[routeName] = screen.router;
+    if (routeName.toLowerCase().indexOf('router') > -1) {
+      const screen = getScreenForRouteName(routeConfigs, routeName);
+      if (screen.router) {
+        childRouters[routeName] = screen.router;
+      }
     }
   });
 
